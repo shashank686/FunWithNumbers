@@ -1,0 +1,43 @@
+-> The react Button component renders the native button on each platform it uses.
+   Because of this, it does not respond to the style prop. It has its own set of props.
+   inside button we have a prop color to change color by simply using color="red"
+   
+->  The value prop can be used to set the value of the input in order to make the state of the component clear, 
+    but does not behave as a true controlled component by default because all operations are asynchronous.
+    Setting value once is like setting the default value, but you can change it continuously based on 
+    onChangeText events as well.If you really want to force the component to always revert to the value you 
+    are setting,you can set controlled={true}.
+
+->TouchableWithoutFeedback
+  as the name suggest it can be used like when we click on input our keypadd open and we have to cancel it we dont
+  have anything to cancel it
+  to cancel it we can use this thing means we can touch on anywhere in the screen and that touch
+  will control a component taht we want to control
+  for ex in this project we want to controll the keypad 
+
+  so we used 
+-> Keyboard api and called Keyboard.dismiss() inside onpress which is inside TouchableWithoutFeedback
+->useRef use so we dont need to change input evertime we render component give more flexibility to work with inputs
+->go again button i passed that startGameHandler to GameScreen to and call it inside GoAgain() function that 
+  was passed as props to GameScreen component from GameOver Component.
+->Random function logic 
+  1) We initialise value in random function by 1 and 100 and userInputted value as third parameter which is excluded
+  2) this is done so com cannot guess value in one go only
+  3)we have taken two var hvalue and lvalue so too keep track of the random Numbers that we got 
+  4)With help of this we are minimizing the range of numbers like if 
+  5) Ex we inputted 65 and first generated value is 55 so we ask user is 55 high or low from 65 , he pressed low
+  6)What we do now we know 55 is low so definitely output is greater than it so we change our range to 55 to 99 
+  7)Vice-versa for greater one 
+  8)hvalue and lvalue was initialised with help of useRef so accessed through name.current
+  9)when we get the value we used conditional rendering to change the component from GameScreen to gameOver component
+  10) used rounds also it simple setting setRounds evertime user press any two buttons lower or higher 
+
+-> BackHandler is Used if we need to trigger the hardware buttons to exit from app we have BackHandler.exitApp()
+   for handling events like hardware backbuttons we have 
+   
+   BackHandler.addEventListener("hardwareBackPress", function () {
+     props.onStartGame();
+    return true;
+    });
+  
+   and one removeEventListner

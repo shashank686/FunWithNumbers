@@ -1,10 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import Header from "./components/header";
+import StartGameScreen from "./screens/StartGameScreen";
+import GameScreen from "./components/GameScreen";
 export default function App() {
+  const [userInput, setUserInput] = useState();
+  const startGameHandler = (selected) => {
+    setUserInput(selected);
+  };
+  let content = <StartGameScreen onStartGame={startGameHandler} />;
+
+  if (userInput) {
+    content = (
+      <GameScreen userChoice={userInput} onStartGame={startGameHandler} />
+    );
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Header title="Numbers" />
+      {content}
     </View>
   );
 }
@@ -12,8 +27,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
